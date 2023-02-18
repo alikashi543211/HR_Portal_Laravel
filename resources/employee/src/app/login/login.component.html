@@ -1,0 +1,136 @@
+<div class="login-main-screen">
+    <div class="login-inner-screen">
+
+        <div class="login-head">
+            <h2><img src="assets/img/admin-icon.png" alt=""> Employee Portal</h2>
+            <h4>{{title}}</h4>
+        </div>
+
+        <div class="login-body">
+            <!-- STEP 1 -->
+            <mat-card *ngIf="step===1">
+                <form [formGroup]="loginForm">
+                    <mat-form-field>
+                        <mat-label>Email</mat-label>
+                        <input type="email" matInput formControlName="email" placeholder="Ex. pat@example.com">
+                        <mat-error
+                            *ngIf="controls?.email?.errors?.email && !controls?.email?.errors?.required && !controls?.email?.errors?.maxlength">
+                            Please enter a valid email address
+                        </mat-error>
+                        <mat-error *ngIf="controls?.email?.errors?.required">
+                            Email is <strong>required</strong>
+                        </mat-error>
+                        <mat-error *ngIf="controls?.email?.errors?.maxlength">
+                            Email length must be less than <strong>50</strong>
+                        </mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field>
+                        <mat-label>Password</mat-label>
+                        <input [type]="pwdShowHide[0]?'text':'password'" matInput formControlName="password"
+                            placeholder="password">
+                        <mat-error *ngIf="controls?.password?.errors?.required">
+                            Password is <strong>required</strong>
+                        </mat-error>
+                        <mat-error
+                            *ngIf="(controls?.password?.errors?.minlength || controls?.password?.errors?.maxlength) && controls?.password?.touched">
+                            Password length must be between <strong>6 & 30</strong>
+                        </mat-error>
+                        <mat-icon [ngClass]="pwdShowHide[0]?'red-clr':''" matSuffix class="cursor-pointer hover-effect"
+                            (click)="showHidePwd(0, $event)">remove_red_eye</mat-icon>
+                    </mat-form-field>
+                    <!-- <div class="text-right">
+                        <p (click)="step=3;">Forgot Password?</p>
+                    </div> -->
+
+
+                    <div class="auth-btn"><button [disabled]="loginForm.invalid" class="btn btn-danger"
+                            mat-raised-button (click)="login();" (keypress.enter)="login()">SIGN
+                            IN</button></div>
+                </form>
+            </mat-card>
+
+            <!-- STEP 2 -->
+            <mat-card *ngIf="step===2 || step===5">
+                <div class="text-center mb-20">
+                    <p *ngIf="number" class="code-sent-txt">Code has been sent to: {{number}}</p>
+                    <otp [setting]="settings" (onValueChange)="onOtpChange($event)"></otp>
+                    <div class="text-center">
+                        <p (click)="reSendOtp()" class="mr-2" [ngClass]="counter>0?'disableResend':''"><b>Resend?</b>
+                        </p>
+                        <p class="cursor-none" [hidden]="counter==0">{{counter}}</p>
+                    </div>
+                </div>
+                <div class="auth-btn">
+                    <button class="btn" mat-raised-button (click)="step=1;resetStep1();">GOTO LOGIN</button>
+                    <button [disabled]="checkOtpBtn()" class="btn btn-danger" mat-raised-button (click)="verifyOtp()"
+                        (keypress.enter)="verifyOtp()">VERIFY</button>
+                </div>
+            </mat-card>
+
+            <!-- STEP 3 -->
+            <mat-card *ngIf="step===3">
+                <mat-form-field>
+                    <mat-label>Email</mat-label>
+                    <input type="email" [formControl]="forgotEmailControl" matInput placeholder="Email">
+                    <mat-error
+                        *ngIf="forgotEmailControl?.errors?.email && !forgotEmailControl?.errors?.required && !forgotEmailControl?.errors?.maxlength">
+                        Please enter a valid email address
+                    </mat-error>
+                    <mat-error *ngIf="forgotEmailControl?.errors?.required">
+                        Email is <strong>required</strong>
+                    </mat-error>
+                    <mat-error *ngIf="forgotEmailControl?.errors?.maxlength">
+                        Email length must be less than <strong>50</strong>
+                    </mat-error>
+                </mat-form-field>
+                <div class="auth-btn">
+                    <button class="btn" mat-raised-button (click)="step=1;resetStep1();">BACK</button>
+                    <button class="btn btn-danger" mat-raised-button [disabled]="forgotEmailControl?.invalid"
+                        (click)="sendOtp()" (keypress.enter)="sendOtp()">CONFIRM</button>
+                </div>
+            </mat-card>
+
+            <!-- STEP 4 -->
+            <mat-card *ngIf="step===4">
+                <form [formGroup]="newPasswordForm">
+                    <mat-form-field>
+                        <mat-label>New Password</mat-label>
+                        <input autocomplete="off" [type]="pwdShowHide[1]?'text':'password'"
+                            formControlName="newPassword" matInput placeholder="New Password">
+                        <mat-error *ngIf="pwdControls?.newPassword?.errors?.required">
+                            Password is <strong>required</strong>
+                        </mat-error>
+                        <mat-error
+                            *ngIf="pwdControls?.newPassword?.errors?.pattern && pwdControls?.newPassword?.touched && !(pwdControls?.newPassword?.errors?.minlength || pwdControls?.newPassword?.errors?.maxlength)">
+                            Password must contain 1 uppercase, 1 lowercase, number and special character
+                        </mat-error>
+                        <mat-error
+                            *ngIf="(pwdControls?.newPassword?.errors?.minlength || pwdControls?.newPassword?.errors?.maxlength) && pwdControls?.newPassword?.touched">
+                            Password length must be between <strong>6 & 30</strong>
+                        </mat-error>
+                        <mat-icon [ngClass]="pwdShowHide[1]?'red-clr':''" matSuffix class="cursor-pointer hover-effect"
+                            (click)="showHidePwd(1, $event)">remove_red_eye</mat-icon>
+
+                    </mat-form-field>
+                    <mat-form-field>
+                        <mat-label>Confirm Password</mat-label>
+                        <input autocomplete="off" [type]="pwdShowHide[2]?'text':'password'"
+                            formControlName="confirmPassword" matInput placeholder="New Password">
+                        <mat-error
+                            *ngIf="pwdControls?.confirmPassword?.touched && pwdControls?.confirmPassword?.errors?.mustMatch">
+                            Password doesn't <strong>match</strong>
+                        </mat-error>
+                        <mat-icon [ngClass]="pwdShowHide[2]?'red-clr':''" matSuffix class="cursor-pointer hover-effect"
+                            (click)="showHidePwd(2, $event)">remove_red_eye</mat-icon>
+                    </mat-form-field>
+                    <div class="auth-btn">
+                        <button class="btn btn-danger" mat-raised-button [disabled]="confirmPwdCheck()"
+                            (click)="setNewPwd()" (keypress.enter)="setNewPwd()">CONFIRM</button>
+                    </div>
+                </form>
+            </mat-card>
+        </div>
+
+    </div>
+</div>

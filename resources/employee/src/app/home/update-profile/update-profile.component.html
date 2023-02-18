@@ -1,0 +1,116 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-8">
+                <!-- SETUP PROFILE -->
+                <div class="card">
+                    <div class="card-header card-header-danger">
+                        <h4 class="card-title">Edit Profile</h4>
+                        <p class="card-category">Update your profile</p>
+                    </div>
+                    <div class="card-body">
+                        <form [formGroup]="profileForm">
+                            <mat-form-field>
+                                <mat-label>Email</mat-label>
+                                <input type="email" matInput formControlName="email" placeholder="Ex. pat@example.com">
+                            </mat-form-field>
+                            <mat-form-field>
+                                <mat-label>First Name</mat-label>
+                                <input matInput formControlName="first_name" placeholder="First name">
+                            </mat-form-field>
+                            <mat-form-field>
+                                <mat-label>Last Name</mat-label>
+                                <input matInput formControlName="last_name" placeholder="Last name">
+                            </mat-form-field>
+                            <!-- <button [disabled]="profileForm.invalid || !profileForm.dirty" (click)="updateProfileInfo()"
+                                mat-raised-button type="submit" class="btn btn-danger pull-right">Update
+                                Profile</button> -->
+                            <div class="clearfix"></div>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="row">
+
+                    <div class="col-md-12">
+                        <!-- RESET PWD -->
+                        <div class="card">
+                            <div class="card-header card-header-danger">
+                                <h4 class="card-title">Reset Password</h4>
+                                <p class="card-category">Update your password</p>
+                            </div>
+                            <div class="card-body">
+                                <form [formGroup]="pwdResetForm">
+                                    <mat-form-field>
+                                        <mat-label>Old Password</mat-label>
+                                        <input [type]="pwdShowHide[0]?'text':'password'" formControlName="old_password"
+                                            matInput placeholder="Old Password">
+                                        <mat-error *ngIf="pwdControls?.old_password?.errors?.required">
+                                            Password is <strong>required</strong>
+                                        </mat-error>
+                                        <mat-icon [ngClass]="pwdShowHide[0]?'red-clr':''" matSuffix
+                                            class="cursor-pointer hover-effect" (click)="showHidePwd(0, $event)">
+                                            remove_red_eye</mat-icon>
+                                    </mat-form-field>
+                                    <mat-form-field>
+                                        <mat-label>New Password</mat-label>
+                                        <input [type]="pwdShowHide[1]?'text':'password'" formControlName="password"
+                                            matInput placeholder="New Password">
+                                        <mat-error *ngIf="pwdControls?.password?.errors?.required">
+                                            Password is <strong>required</strong>
+                                        </mat-error>
+                                        <mat-error
+                                            *ngIf="(pwdControls?.password?.errors?.minlength || pwdControls?.password?.errors?.maxlength) && pwdControls?.password?.touched">
+                                            Password length must be between <strong>5 & 30</strong>
+                                        </mat-error>
+                                        <mat-icon [ngClass]="pwdShowHide[1]?'red-clr':''" matSuffix
+                                            class="cursor-pointer hover-effect" (click)="showHidePwd(1, $event)">
+                                            remove_red_eye</mat-icon>
+                                    </mat-form-field>
+                                    <mat-form-field>
+                                        <mat-label>Confirm Password</mat-label>
+                                        <input [type]="pwdShowHide[2]?'text':'password'"
+                                            formControlName="password_confirmation" matInput placeholder="New Password">
+                                        <mat-error
+                                            *ngIf="pwdControls?.password_confirmation?.touched && pwdControls?.password_confirmation?.errors?.mustMatch">
+                                            Password doesn't <strong>match</strong>
+                                        </mat-error>
+                                        <mat-icon [ngClass]="pwdShowHide[2]?'red-clr':''" matSuffix
+                                            class="cursor-pointer hover-effect" (click)="showHidePwd(2, $event)">
+                                            remove_red_eye</mat-icon>
+                                    </mat-form-field>
+                                    <button [disabled]="pwdResetForm.invalid" mat-raised-button type="submit"
+                                        class="btn btn-danger pull-right" (click)="resetPwd()">Reset Password</button>
+                                    <div class="clearfix"></div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card card-profile">
+                    <div class="avatar-outer">
+                        <div class="card-avatar">
+                            <a>
+                                <img class="img" src="{{profilePic}}" />
+                            </a>
+                            <!-- <mat-icon matTooltip='Update your picture' matTooltipPosition="above"
+                                matTooltipClass="tooltip-red" class="hover-effect cursor-pointer"
+                                (click)="imageUpload()">edit</mat-icon> -->
+
+                        </div>
+                        <input type="file" hidden id="uploader" accept="image/png,image/jpeg,image/jpg"
+                            (change)="onFileSelect($event)" />
+                    </div>
+                    <div class="card-body">
+                        <ng-container *ngIf="userObj">
+                            <h6 class="card-category text-gray">{{userObj?.role?.name}}</h6>
+                            <h4 class="card-title">{{userObj?.first_name + ' ' + userObj?.last_name}}</h4>
+                        </ng-container>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

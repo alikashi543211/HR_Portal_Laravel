@@ -1,0 +1,49 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <!-- TABLE -->
+                    <div class="card-header card-header-danger">
+                        <h4 class="card-title ">Attendance</h4>
+                        <p class="card-category"> See details of your attendance.</p>
+                    </div>
+                    <div class="card-body">
+                        <div class="row mb-2 mt-2">
+                            <div class="col-md-12">
+                                <span class="mr-3" *ngFor="let res of attendanceTypes">
+                                    <i class="mr-1 {{res.color}} fa {{res.icon}}"></i>
+                                    {{res.title}}
+                                </span>
+                            </div>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table table-striped table-bordered">
+                                <tr>
+                                    <th class="p-4 text-center" rowspan="2"> Month </th>
+                                    <th class="text-center" colspan="31"> Dates </th>
+                                </tr>
+                                <tr>
+                                    <th class="text-center" *ngFor="let day of days"> {{day}} </th>
+                                </tr>
+                                <tr class="cursor-pointer" *ngFor="let attendance of attendanceData"
+                                    [routerLink]="['/home/attendance/details', attendance[0].month]">
+                                    <th class="text-center"> {{attendance[0].month}} </th>
+                                    <ng-container *ngFor="let availability of attendance | keyvalue">
+                                        <td class="text-center line-height pl-4 pr-4">
+                                            <ng-container
+                                                *ngIf="availability.value.day == days[availability.value.day - 1]">
+                                                <i class="text-center {{availability.value.color}} fa {{availability.value.icon}}"
+                                                    title="{{availability.value.title}}"></i> <br />
+                                            </ng-container>
+                                        </td>
+                                    </ng-container>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

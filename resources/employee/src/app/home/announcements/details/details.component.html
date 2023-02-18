@@ -1,0 +1,21 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card" *ngIf="!isLoading">
+                    <!-- TABLE -->
+                    <div class="card-header card-header-danger">
+                        <h4 class="card-title ">Announcement Details</h4>
+                    </div>
+                    <div class="card-body">
+                        <h4>Title</h4>
+                        <h5>{{ details.title }}</h5>
+                        <br>
+                        <h4>Description</h4>
+                        <div [innerHTML]="details.description"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

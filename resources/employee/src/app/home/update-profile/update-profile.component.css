@@ -1,0 +1,37 @@
+app-update-profile .avatar-outer mat-icon {
+    position: absolute;
+    bottom: 0px;
+    right: 15px;
+    z-index: 2;
+    background: #7d7d7de3;
+    padding: 5px;
+    width: 29px;
+    height: 29px;
+    font-size: 19px;
+    border-radius: 50%;
+    color: white;
+}
+
+app-update-profile .avatar-outer {
+    position: relative;
+    display: inline-block;
+    width: 130px;
+    margin: 0 auto;
+}
+
+app-update-profile .card-profile .card-avatar {
+    width: 130px !important;
+    height: 130px !important;
+}
+
+.tooltip-red {
+    color: white !important;
+    background: #b71c1c !important;
+    font-size: 10px !important;
+}
+
+app-update-profile .edit-pencil {
+    font-size: 16px;
+    height: 16px;
+    width: 16px;
+}

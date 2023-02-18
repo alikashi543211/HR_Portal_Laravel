@@ -1,0 +1,12 @@
+<h2 mat-dialog-title>{{data?.title}}</h2>
+<mat-dialog-content>
+    <p>{{data?.message}}</p>
+</mat-dialog-content>
+
+<mat-dialog-actions *ngIf="data?.type!=1">
+    <button mat-raised-button mat-dialog-close>No</button>
+    <button mat-raised-button (click)="confirm();" class="btn btn-danger" cdkFocusInitial>Yes</button>
+</mat-dialog-actions>
+<mat-dialog-actions *ngIf="data?.type==1">
+    <button mat-raised-button (click)="confirm();" class="btn btn-danger" cdkFocusInitial>Okay</button>
+</mat-dialog-actions>

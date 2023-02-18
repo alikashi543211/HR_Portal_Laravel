@@ -1,0 +1,19 @@
+app-navbar .notification-count {
+    right: 10px;
+    left: auto !important;
+    top: 10px !important;
+}
+
+app-navbar .avatar-img {
+    width: 35px;
+    height: 35px;
+    border: 1px solid #adadad;
+    border-radius: 50%;
+    background: #e7e7e7;
+    object-fit: contain;
+}
+
+.title-head {
+    font-size: 1.5rem !important;
+    font-weight: 500 !important;
+}

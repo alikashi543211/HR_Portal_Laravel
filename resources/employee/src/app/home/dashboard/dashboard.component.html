@@ -1,0 +1,72 @@
+<div class="main-content">
+    <div class="container-fluid" *ngIf="isAllowed">
+        <div class="row">
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="card card-stats cursor-pointer">
+                    <div class="card-header card-header-success card-header-icon">
+                        <div class="card-icon">
+                            <i class="material-icons">av_timer</i>
+                        </div>
+                        <p class="card-category">Today's Checkin</p>
+                        <h3 class="card-title">{{ todayCheckIn }}</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="card card-stats cursor-pointer">
+                    <div class="card-header card-header-success card-header-icon">
+                        <div class="card-icon">
+                            <i class="material-icons">query_builder</i>
+                        </div>
+                        <p class="card-category">Today's Checkout</p>
+                        <h3 class="card-title">{{ todayCheckOut }}</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="card card-stats cursor-pointer">
+                    <div class="card-header card-header-warning card-header-icon">
+                        <div class="card-icon">
+                            <i class="material-icons">groups</i>
+                        </div>
+                        <p class="card-category">Used Sick Leaves</p>
+                        <h3 class="card-title">{{ usedSickLeaves }}</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="card card-stats cursor-pointer">
+                    <div class="card-header card-header-info card-header-icon">
+                        <div class="card-icon">
+                            <i class="material-icons">add_moderator</i>
+                        </div>
+                        <p class="card-category">Remaining Sick Leaves</p>
+                        <h3 class="card-title">{{ remainingSickLeaves }}</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="card card-stats cursor-pointer">
+                    <div class="card-header card-header-danger card-header-icon">
+                        <div class="card-icon">
+                            <i class="material-icons">remove_moderator</i>
+                        </div>
+                        <p class="card-category">Used Casual Leaves</p>
+                        <h3 class="card-title">{{ usedCasualLeaves }}</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="card card-stats cursor-pointer">
+                    <div class="card-header card-header-info card-header-icon">
+                        <div class="card-icon">
+                            <i class="material-icons">shield</i>
+                        </div>
+                        <p class="card-category">Remaining Casual Leaves</p>
+                        <h3 class="card-title">{{ remainingCasualLeaves }}</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

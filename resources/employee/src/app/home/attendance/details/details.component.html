@@ -1,0 +1,48 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <!-- TABLE -->
+                    <div class="card-header card-header-danger">
+                        <h4 class="card-title ">DETAILS WORKING</h4>
+                        <p class="card-category"> See details of your attendance.</p>
+                    </div>
+                    <div class="card-body">
+                        <div *ngIf="total" class="row mb-2 mt-2">
+                            <div class="col-md-4">
+                                <b>Total Late Minutes:</b> {{ total['minutes'] ? total['minutes'] : 0 }} minutes
+                            </div>
+                            <div class="col-md-4">
+                                <b>Total Deduction:</b> {{ total['deduction'] ? total['deduction'] : 0 }} Pkr
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table">
+                                <tr>
+                                    <th class="text-center"> Date </th>
+                                    <th class="text-center"> Check in time </th>
+                                    <th class="text-center"> Check out time </th>
+                                    <th class="text-center"> Minutes </th>
+                                    <th class="text-center"> Deduction </th>
+                                    <th class="text-center"> Status </th>
+                                </tr>
+                                <ng-container *ngFor="let availability of monthAttendance">
+                                    <tr>
+                                        <td class="text-center"> {{availability.date}} </td>
+                                        <td class="text-center"> {{availability.check_in_time}} </td>
+                                        <td class="text-center"> {{availability.check_out_time}} </td>
+                                        <td class="text-center"> {{availability.minutes}} </td>
+                                        <td class="text-center"> {{availability.deduction}} </td>
+                                        <td class="text-center"> {{availability.attendance_title}} </td>
+                                    </tr>
+                                </ng-container>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

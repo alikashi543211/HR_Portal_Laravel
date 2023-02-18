@@ -1,0 +1,8 @@
+.blur-content {
+    filter: grayscale(0.8) blur(2px);
+    cursor: not-allowed;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}

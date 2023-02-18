@@ -1,0 +1,70 @@
+<div class="logo">
+    <a class="simple-text">
+        <div class="logo-img">
+            <img src="assets/img/admin-icon.png" />
+        </div>
+        EMPLOYEE PORTAL
+    </a>
+</div>
+<div class="sidebar-wrapper">
+    <div *ngIf="isMobileMenu()">
+        <ul class="nav navbar-nav nav-mobile-menu">
+            <li class="nav-item dropdown">
+                <a class="nav-link" href="javascript:void(0)" id="navbarDropdownMenuLink" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+                    <i class="material-icons">notifications</i>
+                    <!-- <span class="notification-count"
+                        *ngIf="firebaseService.notificationsCount">{{(firebaseService.notificationsCount< 100)?firebaseService.notificationsCount:'99+'}}</span> -->
+                    <p>
+                        <span class="d-lg-none d-md-block">Notifications</span>
+                    </p>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+                    <!-- <ng-container *ngFor="let notification of firebaseService.notifications; let i=index">
+                        <a *ngIf="i<firebaseService.pageSize" class="dropdown-item white-space-class"
+                            href="javascript:void(0)" (click)="firebaseService.readNotification(notification)"
+                            [ngClass]="notification.payload.val().is_read? '': 'notification-unread'">
+                            <div>
+                                <p>
+                                    <br>{{notification.payload.val().title}}
+                                </p>
+                                <small>
+                                    {{notification.payload.val().description}}
+                                </small>
+                            </div>
+                        </a>
+                    </ng-container>
+                    <div class="text-class cursor-pointer"
+                        *ngIf="firebaseService.totalNotifications>firebaseService.pageSize"
+                        (click)="firebaseService.loadMore($event)">
+                        <h5>Load more</h5>
+                    </div>
+                    <div class="text-class">
+                        <h4 *ngIf="!firebaseService.notifications.length">No notification found.
+                        </h4>
+                    </div> -->
+                </div>
+            </li>
+        </ul>
+    </div>
+    <ul class="nav">
+        <li routerLinkActive="active" *ngFor="let menuItem of menuItems" class="{{menuItem.class}} nav-item">
+            <a class="nav-link" [routerLink]="[menuItem.path]">
+                <i class="material-icons">{{menuItem.icon}}</i>
+                <p>{{menuItem.title}}</p>
+            </a>
+        </li>
+        <li routerLinkActive="active" class="{{PROFILE_OBJ.class}} nav-item">
+            <a class="nav-link" [routerLink]="[PROFILE_OBJ.path]">
+                <i class="material-icons">{{PROFILE_OBJ.icon}}</i>
+                <p>{{PROFILE_OBJ.title}}</p>
+            </a>
+        </li>
+        <li routerLinkActive="active" class="{{SIGN_OUT_OBJ.class}} nav-item">
+            <a class="nav-link cursor-pointer" (click)="signout()">
+                <i class="material-icons">{{SIGN_OUT_OBJ.icon}}</i>
+                <p>{{SIGN_OUT_OBJ.title}}</p>
+            </a>
+        </li>
+    </ul>
+</div>

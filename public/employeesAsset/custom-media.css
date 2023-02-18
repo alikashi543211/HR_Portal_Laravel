@@ -1,0 +1,79 @@
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (min-width: 425px) {}
+
+@media only screen and (max-width: 767px) {
+    [data-sidebar-style="overlay"] .nav-header .logo-abbr {
+        content: url('../assets/Devstudios_icon.png') !important;
+        max-width: 3rem;
+    }
+}
+
+@media only screen and (min-width: 992px) {
+    .col-sm-6.text-right.profile--image.d-flex {
+        left: 40rem !important;
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    .show.menu-toggle .nav-header .brand-logo .logo-abbr {}
+}
+
+@media only screen and (min-width: 768px) {
+    [data-sidebar-style="mini"] .nav-header .brand-logo .logo-abbr {
+        content: url('../assets/Devstudios_icon.png') !important;
+        max-width: 3rem;
+    }
+
+    [data-sibebarbg="color_3"][data-theme-version="dark"][data-sidebar-style="mini"][data-layout="vertical"] .deznav .metismenu>li.mm-active>a,
+    [data-sibebarbg="color_3"][data-theme-version="dark"][data-sidebar-style="mini"][data-layout="vertical"] .deznav .metismenu>li:hover>a,
+    [data-sibebarbg="color_3"][data-sidebar-style="mini"][data-layout="vertical"] .deznav .metismenu>li.mm-active>a,
+    [data-sibebarbg="color_3"][data-sidebar-style="mini"][data-layout="vertical"] .deznav .metismenu>li:hover>a {
+        background-color: #F47429;
+    }
+
+    [data-sidebar-style="mini"][data-layout="vertical"] .deznav .metismenu>li.mm-active>a {
+        background: #F47429;
+        color: #fff;
+        border-radius: 12px;
+    }
+}
+
+
+
+
+/* Large devices (laptops/desktops, 992px and up) */
+
+
+
+
+
+
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+    .col-sm-6.text-right.profile--image.d-flex {
+        left: 50rem !important;
+    }
+}
+
+
+/* @media only screen and (min-width: 1200px) and (max-width: 1600px) {
+    .col-xxl-3 {
+            flex: 0 0 25%;
+            max-width: 25%;
+        }
+}
+
+@media (min-width: 1200px) {
+    .col-xl-3 {
+            flex: 0 0 25%;
+            max-width: 25%;
+        }
+}
+
+@media (min-width: 576px) {
+    .col-sm-6 {
+            flex: 0 0 50%;
+            max-width: 50%;
+        }
+} */
